@@ -1,5 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
+import configureStore from './store/configureStore'
+import { Provider } from 'react-redux'
 
-ReactDOM.render(<App />,document.getElementById('root'))
+const store = configureStore()
+
+console.log(store.getState())
+
+store.subscribe(() => {
+    console.log(store.getState())
+})
+console.log(store)
+ReactDOM.render( <Provider><App /></Provider> , document.getElementById('root'))
