@@ -2,8 +2,12 @@ import React, { useState} from "react";
 import { Link,Route } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import validator from 'validator'
+import { startAdminRegister } from "../../actions/adminActions";
+import { useDispatch } from "react-redux";
 
 const RegisterForm = (props) => {
+    const dispatch = useDispatch()
+    
     const [username, setUserName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -60,6 +64,7 @@ const RegisterForm = (props) => {
                 }
             }
             console.log(formData)
+            dispatch(startAdminRegister(formData))
         } else {
             setFormErrors(errors)
         }
