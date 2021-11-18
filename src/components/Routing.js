@@ -2,7 +2,7 @@ import React from 'react'
 import { Route } from 'react-router'
 import Home from './Home'
 import RegisterForm from './Admin/RegisterForm'
-import LoginForm from './Admin/LoginForm'
+import LoginForm from './ReuseableComponents/LoginForm'
 
 const Routing = (props) => {
     return (

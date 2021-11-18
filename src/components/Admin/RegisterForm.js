@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import { Link,Route } from "react-router-dom";
-import LoginForm from "./LoginForm";
+import LoginForm from "../ReuseableComponents/LoginForm";
 import validator from 'validator'
 import { startAdminRegister } from "../../actions/adminActions";
 import { useDispatch } from "react-redux";
