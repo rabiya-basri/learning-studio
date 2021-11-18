@@ -1,8 +1,6 @@
 import React from "react";
-import { Link,Route } from 'react-router-dom'
-import Home from "./Home";
-import RegisterForm from './Admin/RegisterForm'
-import LoginForm from './Admin/LoginForm'
+import { Link } from 'react-router-dom'
+import Routing from "./Routing";
 
 const NavBar = (props) => {
     return (
@@ -10,10 +8,7 @@ const NavBar = (props) => {
             <Link to='/'>Home</Link> |
             <Link to='/admin/register'>Admin</Link> | 
             <Link to='/student/login'>Student</Link>
-
-            <Route path='/' component={Home} exact={ true}/>
-            <Route path='/admin/register' component={RegisterForm} exact={ true}/>
-            <Route path='/student/login' component={LoginForm} />
+            <Routing />
         </div>
     )
 }

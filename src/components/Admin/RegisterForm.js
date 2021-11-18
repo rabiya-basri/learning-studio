@@ -49,6 +49,15 @@ const RegisterForm = (props) => {
         }
     }
 
+    //Reset registration form
+    const handelFormReset = () => {
+        setUserName('')
+        setEmail('')
+        setPassword('')
+        setAcademyName('')
+        setWebsite('')
+    }
+
     const handelSubmit = (e) => {
         e.preventDefault()
         runValidation()
@@ -63,8 +72,9 @@ const RegisterForm = (props) => {
                     website:website
                 }
             }
-            console.log(formData)
-            dispatch(startAdminRegister(formData))
+            //console.log(formData)
+            dispatch(startAdminRegister(formData, props))
+            handelFormReset()
         } else {
             setFormErrors(errors)
         }

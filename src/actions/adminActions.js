@@ -7,13 +7,13 @@ export const adminRegister = (formData) => {
     }
 }
 
-export const startAdminRegister = (formData) => {
+export const startAdminRegister = (formData,props) => {
     return (dispatch) => {
         axios.post(`https://dct-e-learning.herokuapp.com/api/admin/register`, formData)
             .then((response) => {
-                alert(response.data.notice)
                 dispatch(adminRegister(response.data.notice))
-
+                alert(response.data.notice)
+                props.history.push('/admin/login')
             })
             .catch((err) => {
                 alert(err.message)
