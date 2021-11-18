@@ -1,6 +1,7 @@
 import React, { useState} from "react";
 import { Link,Route } from "react-router-dom";
 import LoginForm from "./LoginForm";
+import validator from 'validator'
 
 const RegisterForm = (props) => {
     const [username, setUserName] = useState('')
@@ -8,7 +9,8 @@ const RegisterForm = (props) => {
     const [password, setPassword] = useState('')
     const [academyname, setAcademyName] = useState('')
     const [website, setWebsite] = useState('')
-    
+    const [formErrors, setFormErrors] = useState({})
+    const errors={}
 
     const handelInputs = (e) => {
         const attr = e.target.name
@@ -24,15 +26,61 @@ const RegisterForm = (props) => {
             setWebsite(e.target.value)
         }
     }
+
+    //registerform validation
+    const runValidation = () => {
+        //username
+        if (username.trim().length === 0) {
+            errors.username='username cannot be blank'
+        }
+        //email
+        if (email.trim().length === 0) {
+            errors.email='email cannot be blank'
+        } else if (!validator.isEmail(email)) {
+            errors.email='Invalid email'
+        }
+        //password
+        if (password.trim().length < 8) {
+            errors.password='password cannot be lessthan 8 characters'
+        }
+    }
+
+    const handelSubmit = (e) => {
+        e.preventDefault()
+        runValidation()
+        if (Object.keys(errors).length === 0) {
+            setFormErrors({})
+            const formData = {
+                username: username,
+                email: email,
+                password: password,
+                academy: {
+                    name: academyname,
+                    website:website
+                }
+            }
+            console.log(formData)
+        } else {
+            setFormErrors(errors)
+        }
+    }
+
     return (
         <div>
             <h2>Register</h2>
 
-            <form>
-                <input type='text' value={ username} name='username' onChange={ handelInputs} placeholder='Enter username' /><br/>
-                <input type='text' value={ email} name='email' onChange={ handelInputs} placeholder='Enter Email' /><br/>
-                <input type='password' value={ password} name='password' onChange={ handelInputs} placeholder='Enter Password' /><br/>
-                <input type='text' value={ academyname} name='academyname' onChange={ handelInputs} placeholder='Enter academy name' /><br/>
+            <form onSubmit={handelSubmit}>
+                <input type='text' value={username} name='username' onChange={handelInputs} placeholder='Enter username' /><br />
+                {formErrors.username && <span style={{ color: 'red' }}>{formErrors.username}</span>}<br />
+                
+                <input type='text' value={email} name='email' onChange={handelInputs} placeholder='Enter Email' /><br />
+                {formErrors.email && <span style={{ color: 'red' }}>{formErrors.email}</span>}<br />
+                
+                <input type='password' value={password} name='password' onChange={handelInputs} placeholder='Enter Password' /><br />
+                {formErrors.password && <span style={{ color: 'red' }}>{formErrors.password}</span>}<br />
+                
+                <input type='text' value={academyname} name='academyname' onChange={handelInputs} placeholder='Enter academy name' /><br />
+                
                 <input type='text' value={ website} name='website' onChange={ handelInputs} placeholder='Academy website' /><br/>
                 <input type='submit' value='Register'/>
             </form>
