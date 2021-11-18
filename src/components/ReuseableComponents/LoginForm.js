@@ -1,7 +1,11 @@
 import React,{useState} from "react";
 import validator from "validator";
+import { startAdminLogin } from "../../actions/adminActions";
+import { useDispatch } from 'react-redux'
 
 const LoginForm = (props) => {
+    const dispatch = useDispatch()
+    
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [formErrors, setFormErrors] = useState({})
@@ -37,6 +41,7 @@ const LoginForm = (props) => {
                 password
             }
             console.log(formData)
+            dispatch(startAdminLogin(formData))
         } else {
             setFormErrors(errors)
         }
@@ -45,9 +50,9 @@ const LoginForm = (props) => {
         <div>
             <h2>Login</h2>
             <form onSubmit={ handelSubmit}>
-                <input type='text' value={email} onChange={handelInputs} placeholder='Enter Email' /><br />
+                <input type='text' value={email} onChange={handelInputs} name='email' placeholder='Enter Email' /><br />
                 {formErrors.email && <span style={{color:'red'}}>{ formErrors.email}</span>}<br/>
-                <input type='password' value={password} onChange={handelInputs} placeholder='Enter Password' /><br />
+                <input type='password' value={password} onChange={handelInputs} name='password' placeholder='Enter Password' /><br />
                 <input type='submit' value='login' />
             </form>
         </div>
