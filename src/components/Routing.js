@@ -3,6 +3,7 @@ import { Route } from 'react-router'
 import Home from './Home'
 import RegisterForm from './Admin/RegisterForm'
 import LoginForm from './ReuseableComponents/LoginForm'
+import Account from './Admin/Account'
 
 const Routing = (props) => {
     const {handelAuth}=props
@@ -20,7 +21,8 @@ const Routing = (props) => {
                     )
                 }}
                 />
-            <Route path='/student/login' component={LoginForm} />
+            <Route path='/student/login' component={LoginForm} exact={ true}/>
+            <Route path='/admin/account' component={Account} exact={ true}/>
         </div>
     )
 }

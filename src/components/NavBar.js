@@ -10,15 +10,16 @@ const NavBar = (props) => {
             <Link to='/'>Home</Link> |
             {isLoggedIn ? (
                 <>
+                    <Link to='/admin/account'>Account</Link> |
                     <Link>Student</Link> |
                     <Link>courses</Link> |
                     <Link onClick={(e) => {
-                                e.preventDefault()
-                                localStorage.removeItem('token')
-                                alert('successfully log out')
-                                handelAuth()
-                                props.history.push('/')
-                            }}>Logout</Link>
+                     e.preventDefault()
+                     localStorage.removeItem('token')
+                     alert('successfully log out')
+                     handelAuth()
+                     props.history.push('/')
+                     }}>Logout</Link>
                 </>
             ) : (
                 <>

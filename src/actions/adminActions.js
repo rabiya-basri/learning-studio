@@ -1,4 +1,6 @@
 import axios from 'axios'
+import jwt from 'jwt-decode'
+
 //actionGenerator for admin registration
 export const adminRegister = (formData) => {
     return {
@@ -44,9 +46,10 @@ export const startAdminLogin = (formData,props) => {
                 if (Object.keys(admin).includes('errors')) {
                     console.log(admin.errors)
                 } else {
+                    const result=jwt(admin.token)
                     console.log(admin)
-                    dispatch(adminLogin(admin))
-                    localStorage.setItem('token', admin.token)
+                    localStorage.setItem('token', result)
+                    dispatch(adminLogin(result,admin))
                     alert('successfully logged in')
                     props.history.push('/')
                     props.handelAuth() 
