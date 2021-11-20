@@ -40,12 +40,13 @@ const LoginForm = (props) => {
                 email,
                 password
             }
+            dispatch(startAdminLogin(formData, props))
             console.log(formData)
-            dispatch(startAdminLogin(formData))
         } else {
             setFormErrors(errors)
         }
     }
+    
     return (
         <div>
             <h2>Login</h2>

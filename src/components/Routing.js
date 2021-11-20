@@ -5,11 +5,21 @@ import RegisterForm from './Admin/RegisterForm'
 import LoginForm from './ReuseableComponents/LoginForm'
 
 const Routing = (props) => {
+    const {handelAuth}=props
     return (
         <div>
             <Route path='/' component={Home} exact={true} />
             <Route path='/admin/register' component={RegisterForm} exact={true} />
-            <Route path='/admin/login' component={LoginForm} exact={true} />
+            <Route path='/admin/login'
+                render={(props) => {
+                    return (
+                        <LoginForm
+                            {...props}
+                            handelAuth={handelAuth}
+                        />
+                    )
+                }}
+                component={LoginForm} exact={true} />
             <Route path='/student/login' component={LoginForm} />
         </div>
     )

@@ -35,12 +35,22 @@ export const adminLogin = (formData) => {
     }
 }
 
-export const startAdminLogin = (formData) => {
+export const startAdminLogin = (formData,props) => {
     return (dispatch) => {
         axios.post(`https://dct-e-learning.herokuapp.com/api/admin/login`, formData)
             .then((response) => {
-                console.log(response)
-                dispatch(adminLogin(response))
+                //console.log(response)
+                const admin = response.data
+                if (Object.keys(admin).includes('errors')) {
+                    console.log(admin.errors)
+                } else {
+                    console.log(admin)
+                    dispatch(adminLogin(admin))
+                    localStorage.setItem('token', admin.token)
+                    alert('successfully logged in')
+                    props.history.push('/')
+                    props.handelAuth() 
+                } 
             })
             .catch((err) => {
                 console.log(err.message)

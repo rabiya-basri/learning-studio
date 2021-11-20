@@ -3,7 +3,7 @@ const adminInitialState = {
 }
 const adminReducer = (state=adminInitialState,action) => {
     switch (action.type) {
-      
+        
         default: {
             return {...state}
         }
