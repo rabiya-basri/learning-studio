@@ -1,5 +1,5 @@
 import axios from 'axios'
-import jwt from 'jwt-decode'
+// import jwt from 'jwt-decode'
 
 //actionGenerator for admin registration
 export const adminRegister = (formData) => {
@@ -29,7 +29,6 @@ export const startAdminRegister = (formData,props) => {
 }
 
 //actiongenerator for login
-
 export const adminLogin = (formData) => {
     return {
         type: 'lOGIN_ADMIN',
@@ -44,19 +43,45 @@ export const startAdminLogin = (formData,props) => {
                 //console.log(response)
                 const admin = response.data
                 if (Object.keys(admin).includes('errors')) {
-                    console.log(admin.errors)
+                    alert(admin.errors)
                 } else {
-                    const result=jwt(admin.token)
+                    // const result=jwt(admin.token)
                     console.log(admin)
-                    localStorage.setItem('token', result)
-                    dispatch(adminLogin(result,admin))
+                    dispatch(adminLogin(admin))
+                    localStorage.setItem('token', admin.token)
                     alert('successfully logged in')
                     props.history.push('/')
                     props.handelAuth() 
                 } 
             })
             .catch((err) => {
-                console.log(err.message)
+               alert(err.message)
             })
+    }
+}
+
+//getting admindetails- GET()
+export const adminDetails = (result) => {
+    return {
+        type: 'ADMIN_DETAILS',
+        payload:result
+    }
+}
+
+export const startAdminDetails = () => {
+    return (dispatch) => {
+        axios.get('https://dct-e-learning.herokuapp.com/api/admin/account', {
+            headers: {
+                'Authorization':localStorage.getItem('token')
+            }
+        })
+            .then((response) => {
+                const result=response.data
+                //console.log(result)
+                dispatch(adminDetails(result))
+            })
+            .catch((err) => {
+            alert(err.message)
+        })
     }
 }

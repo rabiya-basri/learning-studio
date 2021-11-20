@@ -3,7 +3,7 @@ const adminInitialState = {
 }
 const adminReducer = (state=adminInitialState,action) => {
     switch (action.type) {
-        case 'lOGIN_ADMIN': {
+        case 'ADMIN_DETAILS': {
             return {...state,data:{...action.payload}}
         }
         default: {
