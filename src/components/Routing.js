@@ -19,7 +19,7 @@ const Routing = (props) => {
                         />
                     )
                 }}
-                component={LoginForm} exact={true} />
+                />
             <Route path='/student/login' component={LoginForm} />
         </div>
     )

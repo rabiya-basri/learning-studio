@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom'
+import { Link,withRouter } from 'react-router-dom'
 import Routing from "./Routing";
 
 const NavBar = (props) => {
@@ -15,7 +15,7 @@ const NavBar = (props) => {
                     <Link onClick={(e) => {
                                 e.preventDefault()
                                 localStorage.removeItem('token')
-                                console.log('successfully log out')
+                                alert('successfully log out')
                                 handelAuth()
                                 props.history.push('/')
                             }}>Logout</Link>
@@ -30,4 +30,4 @@ const NavBar = (props) => {
         </div>
     )
 }
-export default NavBar
+export default withRouter(NavBar)
