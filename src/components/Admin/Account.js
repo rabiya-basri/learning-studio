@@ -1,9 +1,12 @@
-import React,{useEffect} from 'react'
+import React,{useState,useEffect} from 'react'
 import { useSelector,useDispatch } from 'react-redux'
 import { startAdminDetails } from '../../actions/adminActions'
+import EditAdmin from './EditAdmin'
 
 const Account = (props) => {
     const dispatch = useDispatch()
+
+    const [toggle,setToggle]=useState(false)
     
     useEffect(() => {
         dispatch(startAdminDetails())
@@ -13,10 +16,17 @@ const Account = (props) => {
         return state.admin.data
     })
     
+    const handelToggle = () => {
+        setToggle(!toggle)
+    }
+
     return (
         <div>
-            <h1>User Details</h1>
-            <button>Edit</button>
+            {toggle && <EditAdmin />}
+            {toggle ?
+                <button onClick={handelToggle}>close</button> :
+                <button onClick={handelToggle}>Edit</button>
+            }
             <h3>Role: { admin.role}</h3>
             <p>Username: {admin.username}</p>
             <p>Email: {admin.email}</p>

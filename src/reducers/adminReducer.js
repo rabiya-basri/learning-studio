@@ -6,6 +6,9 @@ const adminReducer = (state=adminInitialState,action) => {
         case 'ADMIN_DETAILS': {
             return {...state,data:{...action.payload}}
         }
+        case 'EDIT_ADMIN': {
+            return {...state,data:{...action.payload}}
+        }
         default: {
             return {...state}
         }

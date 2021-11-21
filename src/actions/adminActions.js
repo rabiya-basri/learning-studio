@@ -85,3 +85,30 @@ export const startAdminDetails = () => {
         })
     }
 }
+
+//Editadmin details-PUT()
+export const editAdmin = (formData) => {
+    return {
+        type: 'EDIT_ADMIN',
+        payload:formData
+    }
+}
+
+export const startEditAdmin = (formData) => {
+    return (dispatch) => {
+        axios.put(`https://dct-e-learning.herokuapp.com/api/admin`, formData, {
+            headers: {
+                'Authorization':localStorage.getItem('token')
+            }
+        })
+            .then((response) => {
+                const result=response.data
+                //console.log(result)
+                dispatch(editAdmin(result))
+                alert('successfully edited')
+            })
+            .catch((err) => {
+            alert(err.message)
+        })
+    }
+}

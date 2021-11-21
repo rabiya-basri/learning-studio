@@ -1,7 +1,11 @@
 import React,{useState} from 'react'
 import validator from "validator";
+import { useDispatch } from 'react-redux';
+import { startEditAdmin } from '../../actions/adminActions';
 
 const EditAdmin = (props) => {
+    const dispatch = useDispatch()
+    
     const [email, setEmai] = useState('')
     const [username, setUsername] = useState('')
     const [academyName, setAcademyName] = useState('')
@@ -45,6 +49,11 @@ const EditAdmin = (props) => {
                 }
             }
             console.log(formData)
+            dispatch(startEditAdmin(formData))
+            setEmai('')
+            setUsername('')
+            setAcademyName('')
+            setWebsite('')
         } else {
             setFormErrors(errors)
         }
@@ -59,7 +68,7 @@ const EditAdmin = (props) => {
                 <input type='text' value={ username} onChange={ handelInput} name='username' placeholder='Enter username' /><br/>
                 <input type='text' value={ academyName} onChange={ handelInput} name='academyname' placeholder='Enter academy name' /><br/>
                 <input type='text' value={ website} onChange={ handelInput} name='website' placeholder='Enter website' /><br/>
-                <input type='submit' value='Edit'/>
+                <input type='submit' value='save'/>
             </form>
         </div>
     )
