@@ -3,7 +3,7 @@ import { Link,Route} from "react-router-dom";
 import validator from 'validator'
 import { startAdminRegister } from "../../actions/adminActions";
 import { useDispatch } from "react-redux";
-import LoginForm from '../ReuseableComponents/LoginForm'
+import LoginForm from './LoginForm'
 const RegisterForm = (props) => {
     const dispatch = useDispatch()
     
