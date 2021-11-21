@@ -26,3 +26,27 @@ export const startRegisterStudent = (formData) => {
             })
     }
 }
+
+//student login
+export const loginStudent = (formData) => {
+    return {
+        type: 'LOGIN_STUDENT',
+        payload:formData
+    }
+}
+
+export const startLoginStudent = (formData) => {
+    return (dispatch) => {
+        axios.post('https://dct-e-learning.herokuapp.com/api/students/login', formData)
+            .then((response) => {
+                const token=response.data.token
+                console.log('student token',token)
+                dispatch(loginStudent(token))
+                localStorage.setItem('token',token)
+                alert('successfully loggedin')
+            })
+            .catch((err) => {
+                alert(err.message)
+            })
+    }
+}

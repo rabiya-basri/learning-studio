@@ -24,7 +24,7 @@ const NavBar = (props) => {
             ) : (
                 <>
                     <Link to='/admin/register'>Admin</Link> | 
-                    <Link to='/student/login'>Student</Link> 
+                    <Link to='/studentlogin'>Student</Link> 
                 </>
             )}
             <Routing handelAuth={ handelAuth}/>
