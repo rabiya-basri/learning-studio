@@ -4,6 +4,7 @@ import Home from './Home'
 import RegisterForm from './Admin/RegisterForm'
 import LoginForm from './Admin/LoginForm'
 import Account from './Admin/Account'
+import Register from './Student/Register'
 
 const Routing = (props) => {
     const {handelAuth}=props
@@ -20,7 +21,8 @@ const Routing = (props) => {
                         />
                     )
                 }}
-                />
+            />
+            <Route path='/studentregister' component={Register} exact={ true}/>
             <Route path='/student/login' component={LoginForm} exact={ true}/>
             <Route path='/admin/account' component={Account} exact={ true}/>
         </div>

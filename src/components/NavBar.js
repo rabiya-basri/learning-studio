@@ -11,7 +11,7 @@ const NavBar = (props) => {
             {isLoggedIn ? (
                 <>
                     <Link to='/admin/account'>Account</Link> |
-                    <Link>Student</Link> |
+                    <Link to='/studentregister'>Student</Link> |
                     <Link>courses</Link> |
                     <Link onClick={(e) => {
                      e.preventDefault()
