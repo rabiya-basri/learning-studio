@@ -1,7 +1,11 @@
 import React,{useState} from 'react'
 import validator from 'validator'
+import { startRegisterStudent } from '../../actions/studentActions'
+import { useDispatch } from 'react-redux'
 
 const Register = (props) => {
+    const dispatch = useDispatch()
+    
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -36,6 +40,12 @@ const Register = (props) => {
         }
     }
 
+    const resetForm = () => {
+        setName('')
+        setEmail('')
+        setPassword('')
+    }
+
     const handelSubmit = (e) => {
         e.preventDefault()
         runValidation()
@@ -47,6 +57,8 @@ const Register = (props) => {
                 password
             }
             console.log(formData)
+            dispatch(startRegisterStudent(formData))
+            resetForm()
         } else {
             setFormErrors(errors)
         }
@@ -55,11 +67,11 @@ const Register = (props) => {
         <div>
             <h2>Register Student</h2>
             <form onSubmit={ handelSubmit}>
-                <input type='text' value={name} onChange={handelInput} placeholder='Enter Student Name' /><br />
+                <input type='text' value={name} onChange={handelInput} name='name' placeholder='Enter Student Name' /><br />
                 {formErrors.name && <span>{ formErrors.name}</span>}<br/>
-                <input type='text' value={email} onChange={handelInput} placeholder='Enter Student Email' /><br />
+                <input type='text' value={email} onChange={handelInput} name='email' placeholder='Enter Student Email' /><br />
                 {formErrors.email && <span>{ formErrors.email}</span>}<br/>
-                <input type='password' value={ password} onChange={ handelInput} placeholder='Enter Student Password'/><br/>
+                <input type='password' value={ password} onChange={ handelInput} name='password' placeholder='Enter Student Password'/><br/>
                 {formErrors.password && <span>{ formErrors.password}</span>}<br/>
                 <input type='submit' value='Register' />
             </form>
