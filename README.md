@@ -1,7 +1,7 @@
 # Learning-Studio(on-going)
 
 ### Overview
-Learning-studio is e-learning application which has two important modules, Admin and Student. where admin has all the right to manage student and course details. where as student can only access the course once the login is authenticated.
+Learning-studio is e-learning application which has four important modules, Admin, Student, course, lectures. where admin has all the right to manage student and course details. where as student can only access the course once the login is authenticated.
 
 ### Description
 * Admin
@@ -21,3 +21,4 @@ Learning-studio is e-learning application which has two important modules, Admin
   - redux-thunk `npm install redux-thunk`
   - validator `npm install validator`
   - axios `npm install axios`
+  - sweetalert `npm install sweetalert`
