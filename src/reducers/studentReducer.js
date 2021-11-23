@@ -6,6 +6,9 @@ const studentReducer = (state = studentInitialState, action) => {
         case 'GET_ALL_STUDENTS':{
             return { ...state, data: [...action.payload]}
         }
+        case 'GET_STUDENT': {
+            return { data: [action.payload] }
+        }
         default: {
             return {...state}
         }

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import swal from 'sweetalert'
 
 //student Registration
 export const registerStudent = (formData) => {
@@ -74,4 +75,35 @@ export const startAllStudents = () => {
             console.log(err.message)
         })
     }
+}
+
+//get particular student info
+export const getStudent = (_id) => {
+    return {
+        type: 'GET_STUDENT',
+        payload:_id
+    }
+}
+
+export const startGetStudent = (_id) => {
+    return (dispatch) => {
+        axios.get(`https://dct-e-learning.herokuapp.com/api/students/${_id}`, {
+            headers: {
+                'Authorization':localStorage.getItem('token')
+            }
+        })
+            .then((response) => {
+                const result = response.data
+                swal({
+                    title: `Name: ${result.name}`,
+                    text:`Email: ${result.email}`,
+                    button:'close'
+                })
+                console.log(result)
+            })
+            .catch((err) => {
+            console.log(err.message)
+        })
+    } 
+    
 }
