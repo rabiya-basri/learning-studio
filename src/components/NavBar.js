@@ -1,12 +1,11 @@
 import React from "react";
 import { Link,withRouter } from 'react-router-dom'
 import Routing from "./Routing";
-
 const NavBar = (props) => {
     const {isLoggedIn,handelAuth}=props
 
     return (
-        <div>
+        <>
             <Link to='/'>Home</Link> |
             {isLoggedIn ? (
                 <>
@@ -27,8 +26,9 @@ const NavBar = (props) => {
                     <Link to='/studentlogin'>Student</Link> 
                 </>
             )}
-            <Routing handelAuth={ handelAuth}/>
-        </div>
+            
+             <Routing handelAuth={ handelAuth}/>
+        </>
     )
 }
 export default withRouter(NavBar)

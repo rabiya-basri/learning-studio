@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector,useDispatch } from "react-redux";
-import { startGetStudent } from "../../actions/studentActions";
+import { startGetStudent,startEditStudent, startRemoveStudent } from "../../actions/studentActions";
 
 const StudentTable = (props) => {
     const dispatch = useDispatch()
@@ -13,6 +13,13 @@ const StudentTable = (props) => {
         dispatch(startGetStudent(_id))
     }
 
+    const handelEdit = (_id) => {
+        dispatch(startEditStudent(_id))
+    }
+
+    const handelDelete = (_id) => {
+        dispatch(startRemoveStudent(_id))
+    }
     return (
         <table>
             <thead>
@@ -21,6 +28,7 @@ const StudentTable = (props) => {
                     <th>Email</th>
                     <th>view Details</th>
                     <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,7 +40,12 @@ const StudentTable = (props) => {
                             <td><button onClick={() => {
                                 handelStudentView(student._id)
                             }}>View</button></td>
-                            <td><button>Edit</button></td>
+                            <td><button onClick={() => {
+                                handelEdit(student._id)
+                            }}>Edit</button></td>
+                            <td><button onClick={() => {
+                                handelDelete(student._id)
+                            }}>Delete</button></td>
                         </tr>
                     )
                 })}

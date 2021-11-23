@@ -131,3 +131,28 @@ export const startEditStudent = (_id,formData) => {
         })
     }
 }
+
+//delete student
+export const removeStudent = (_id) => {
+    return {
+        type: 'REMOVE_STUDENT',
+        payload:_id
+    }
+}
+export const startRemoveStudent = (_id) => {
+    return (dispatch) => {
+        axios.delete(`https://dct-e-learning.herokuapp.com/api/admin/students/${_id}`, {
+            headers: {
+                'Authorization':localStorage.getItem('token')
+            }
+        })
+            .then((response) => {
+                const result = response.data
+                console.log(result)
+                dispatch(removeStudent(result._id))
+            })
+            .catch((err) => {
+            console.log(err.message)
+        })
+    }
+}

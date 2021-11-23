@@ -10,6 +10,12 @@ const studentReducer = (state = studentInitialState, action) => {
         case 'GET_STUDENT': {
             return { data: [action.payload] }
         }
+        case 'REMOVE_STUDENT': {
+            return {
+                ...state, data: [...state.data.filter((ele) => {
+                return ele._id!==action.payload
+            })]}
+        }
         default: {
             return {...state}
         }
