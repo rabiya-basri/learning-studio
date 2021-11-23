@@ -47,7 +47,7 @@ export const startLoginStudent = (formData) => {
                 alert('successfully loggedin')
             })
             .catch((err) => {
-                alert(err.message)
+                console.log(err.message)
             })
     }
 }
@@ -106,4 +106,28 @@ export const startGetStudent = (_id) => {
         })
     } 
     
+}
+
+//Edit StudentDetails actions
+export const editStudent = (_id) => {
+    return {
+        type: 'EDIT_STUDENT',
+        payload:_id
+    }
+}
+
+export const startEditStudent = (_id,formData) => {
+    return (dispatch) => {
+        axios.put(`https://dct-e-learning.herokuapp.com/api/students/${_id}`, formData, {
+            headers: {
+                'Authorization':localStorage.getItem('token')
+            }
+        })
+            .then((response) => {
+            console.log(response.data)
+            })
+            .catch((err) => {
+            console.log(err.message)
+        })
+    }
 }

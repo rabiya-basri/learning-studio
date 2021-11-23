@@ -1,4 +1,5 @@
 const studentInitialState = {
+    isLoading:false,
     data:[]
 }
 const studentReducer = (state = studentInitialState, action) => {
