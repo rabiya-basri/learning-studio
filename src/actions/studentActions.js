@@ -50,3 +50,28 @@ export const startLoginStudent = (formData) => {
             })
     }
 }
+
+//get all student info
+export const allStudents = (result) => {
+    return {
+        type: 'GET_ALL_STUDENTS',
+        payload:result
+    }
+}
+export const startAllStudents = () => {
+    return (dispatch) => {
+        axios.get('https://dct-e-learning.herokuapp.com/api/admin/students', {
+            headers: {
+                'Authorization':localStorage.getItem('token')
+            }
+        })
+            .then((response) => {
+                const result=response.data
+                console.log(result)
+                dispatch(allStudents(result))
+            })
+            .catch((err) => {
+            console.log(err.message)
+        })
+    }
+}
