@@ -16,12 +16,9 @@ const App = (props) => {
     }, [])
     
     return (
-        <Container>
         <>
-            <Typography variant='h4' style={{flexGrow:1}} >Learning Studio</Typography>
-            <NavBar handelAuth={handelAuth} isLoggedIn={ isLoggedIn}/>
+        <NavBar handelAuth={handelAuth} isLoggedIn={ isLoggedIn}/>
         </>
-        </Container>
     )
 }
 export default App

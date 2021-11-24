@@ -1,3 +1,4 @@
+import { Toolbar,Typography } from "@material-ui/core";
 import React from "react";
 import { Link,withRouter } from 'react-router-dom'
 import Routing from "./Routing";
@@ -6,6 +7,8 @@ const NavBar = (props) => {
 
     return (
         <>
+            <Toolbar>
+            <Typography variant='h4' style={{flexGrow:1}} >Learning Studio</Typography>
             <Link to='/'>Home</Link> |
             {isLoggedIn ? (
                 <>
@@ -26,9 +29,11 @@ const NavBar = (props) => {
                     <Link to='/studentlogin'>Student</Link> 
                 </>
             )}
-            
+            </Toolbar>
+        <>
              <Routing handelAuth={ handelAuth}/>
         </>
+    </>
     )
 }
 export default withRouter(NavBar)

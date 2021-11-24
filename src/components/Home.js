@@ -1,10 +1,11 @@
 import React from 'react'
+import { Container } from '@material-ui/core'
 
 const Home = (props) => {
     return (
-        <div>
+        <Container>
             Home
-        </div>
+        </Container>
     )
 }
 export default Home
