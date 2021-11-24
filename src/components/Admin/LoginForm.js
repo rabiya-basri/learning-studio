@@ -2,8 +2,10 @@ import React,{useState} from "react";
 import validator from "validator";
 import { startAdminLogin } from "../../actions/adminActions";
 import { useDispatch } from 'react-redux'
+import { Grid, TextField, Typography , Button, Paper} from "@material-ui/core";
 
 const LoginForm = (props) => {
+    const paperStyle={padding:20,height:'40%',width:200,margin:'20px auto'}
     const dispatch = useDispatch()
     
     const [email, setEmail] = useState('')
@@ -48,15 +50,22 @@ const LoginForm = (props) => {
     }
     
     return (
-        <div>
-            <h2>Login</h2>
+        <Grid>
+            <Paper elevation={10} style={paperStyle}>
+            <Typography>Admin Login</Typography>
             <form onSubmit={ handelSubmit}>
-                <input type='text' value={email} onChange={handelInputs} name='email' placeholder='Enter Email' /><br />
-                {formErrors.email && <span style={{color:'red'}}>{ formErrors.email}</span>}<br/>
-                <input type='password' value={password} onChange={handelInputs} name='password' placeholder='Enter Password' /><br />
-                <input type='submit' value='login' />
+                <TextField type='text' value={email}
+                    onChange={handelInputs} name='email'
+                    label='Enter Email' variant='outlined' /><br/>
+                {formErrors.email && <span style={{ color: 'red' }}>{formErrors.email}</span>}<br />
+                
+                <TextField type='password' value={password}
+                    onChange={handelInputs} name='password'
+                    label='Enter Password' variant='outlined'/><br />
+                <Button variant='contained' size='small' color='primary' type='submit'>Login</Button><br/>
             </form>
-        </div>
+            </Paper>
+        </Grid>
     )
 }
 export default LoginForm

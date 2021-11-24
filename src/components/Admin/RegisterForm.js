@@ -4,8 +4,11 @@ import validator from 'validator'
 import { startAdminRegister } from "../../actions/adminActions";
 import { useDispatch } from "react-redux";
 import LoginForm from './LoginForm'
-import { Box, Button, Container, TextField, Typography } from "@material-ui/core";
+import { Button, Grid, Paper, TextField, Typography } from "@material-ui/core";
+
 const RegisterForm = (props) => {
+    const paperStyle = { padding: 20, height: '70%', width: 400, margin: '20px auto' }
+    
     const dispatch = useDispatch()
     
     const [username, setUserName] = useState('')
@@ -81,36 +84,42 @@ const RegisterForm = (props) => {
     }
 
     return (
-        <Box sx={{ p: 2, border: '1px dashed grey' }}>
-            <Typography>Admin Registration</Typography>
+        <Grid>
+            <Paper elevation={10} style={paperStyle}>
+            <Typography variant='h6' style={{marginBottom:'0.4rem',fontWeight:600,marginLeft:'6rem'}}>Admin Registration</Typography>
 
-            <form  onSubmit={handelSubmit} style={{justifyContent:'center'}}>
-                <TextField variant="outlined" id="outlined-basic"
-                    type='text' value={username} name='username'
-                    onChange={handelInputs} label='AdminName' /><br />
-                {formErrors.username && <span style={{ color: 'red' }}>{formErrors.username}</span>}<br />
-                
-                <TextField variant="outlined" type='text'
-                    value={email} name='email' onChange={handelInputs} label='AdminEmail' /><br />
-                {formErrors.email && <span style={{ color: 'red' }}>{formErrors.email}</span>}<br />
-                
-                <TextField variant="outlined" type='password' 
-                value={password} name='password' onChange={handelInputs} label='Password' /><br />
-                {formErrors.password && <span style={{ color: 'red' }}>{formErrors.password}</span>}<br />
-                
-                <TextField variant="outlined" type='text' 
-                value={academyname} name='academyname' onChange={handelInputs} 
-                label='Academy Name' /><br />
-                
-                <TextField variant="outlined" type='text' 
-                    value={website} name='website' onChange={handelInputs}
-                    label='Academy website' /><br />
-                <Button variant='contained' size='small' color='primary' type='submit'>Register</Button> 
-            </form>
+                <form  onSubmit={handelSubmit} style={{marginLeft:'2rem'}}>
+                    <TextField variant="outlined" id="outlined-basic"
+                        type='text' value={username} name='username'
+                        onChange={handelInputs} label='AdminName'
+                        style={{width:'90%'}}
+                    /><br />
+                    {formErrors.username && <span style={{ color: 'red' }}>{formErrors.username}</span>}<br />
+                    
+                    <TextField variant="outlined" type='text'
+                        value={email} name='email' onChange={handelInputs}
+                        label='AdminEmail' style={{width:'90%'}} /><br />
+                    {formErrors.email && <span style={{ color: 'red' }}>{formErrors.email}</span>}<br />
+                    
+                    <TextField variant="outlined" type='password' 
+                        value={password} name='password' onChange={handelInputs}
+                        label='Password' style={{width:'90%'}} /><br />
+                    {formErrors.password && <span style={{ color: 'red' }}>{formErrors.password}</span>}<br />
+                    
+                    <TextField variant="outlined" type='text' 
+                    value={academyname} name='academyname' onChange={handelInputs} 
+                    label='Academy Name' style={{width:'90%'}} /><br /><br/>
+                    
+                    <TextField variant="outlined" type='text' 
+                        value={website} name='website' onChange={handelInputs}
+                        label='Academy website' style={{width:'90%'}} /><br /><br/>
+                    <Button variant='contained' size='small' color='primary' type='submit'>Register</Button>
+                </form>
 
-            <Typography>Already have an account? <Link to='/admin/login'>Login</Link></Typography>
-            <Route path='/admin/login' component={LoginForm} exact={ true}/>
-        </Box>
+                <Typography style={{ marginTop:'0.3rem',marginLeft:'2rem'}}>Already have an account? <Link to='/admin/login'>Login</Link></Typography>
+                <Route path='/admin/login' component={LoginForm} exact={ true}/>
+            </Paper>
+        </Grid>
     )
 }
 
