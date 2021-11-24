@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector,useDispatch } from "react-redux";
 import { startGetStudent,startEditStudent, startRemoveStudent } from "../../actions/studentActions";
+import { TableContainer,Table, TableHead, TableRow, TableCell, TableBody, Paper } from '@material-ui/core'
 
 const StudentTable = (props) => {
     const dispatch = useDispatch()
@@ -21,36 +22,42 @@ const StudentTable = (props) => {
         dispatch(startRemoveStudent(_id))
     }
     return (
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>view Details</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                {students.map((student) => {
+        <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+                <TableRow>
+                    <TableCell style={{fontWeight:600}}>Id</TableCell>
+                    <TableCell style={{fontWeight:600}}>Name</TableCell>
+                    <TableCell style={{fontWeight:600}}>Email</TableCell>
+                    <TableCell style={{fontWeight:600}}>view Details</TableCell>
+                    <TableCell style={{fontWeight:600}}>Edit</TableCell>
+                    <TableCell style={{fontWeight:600}}>Delete</TableCell>
+                </TableRow>
+            </TableHead>
+            <TableBody>
+                {students.map((student,i) => {
                     return (
-                        <tr key= {student._id} >
-                            <td>{student.name}</td>
-                            <td>{student.email}</td>
-                            <td><button onClick={() => {
+                        <TableRow key={student._id}
+                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                        >
+                            <TableCell>{ i+1}</TableCell>
+                            <TableCell>{student.name}</TableCell>
+                            <TableCell>{student.email}</TableCell>
+                            <TableCell><button onClick={() => {
                                 handelStudentView(student._id)
-                            }}>View</button></td>
-                            <td><button onClick={() => {
+                            }}>View</button></TableCell>
+                            <TableCell><button onClick={() => {
                                 handelEdit(student._id)
-                            }}>Edit</button></td>
-                            <td><button onClick={() => {
+                            }}>Edit</button></TableCell>
+                            <TableCell><button onClick={() => {
                                 handelDelete(student._id)
-                            }}>Delete</button></td>
-                        </tr>
+                            }}>Delete</button></TableCell>
+                        </TableRow>
                     )
                 })}
-            </tbody>
-        </table>
+            </TableBody>
+        </Table>
+        </TableContainer>
     )
 }
 export default StudentTable

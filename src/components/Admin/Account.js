@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 import { useSelector,useDispatch } from 'react-redux'
 import { startAdminDetails } from '../../actions/adminActions'
 import EditAdmin from './EditAdmin'
-
+import {Container, Typography,Button} from '@material-ui/core'
 const Account = (props) => {
     const dispatch = useDispatch()
 
@@ -21,19 +21,23 @@ const Account = (props) => {
     }
 
     return (
-        <div>
+        <Container style={{marginTop:'0.5rem'}}>
+            <Typography variant='h5' style={{fontWeight:600,marginTop:'0.5rem'}}>Role: { admin.role}</Typography>
+            <Typography>AdminName: {admin.username}</Typography>
+            <Typography>Email: {admin.email}</Typography>
+            <Typography variant='h5' style={{fontWeight:600,marginTop:'0.5rem'}}>Academy Details</Typography>
+            <Typography>Name: {admin.academy?.name}</Typography>
+            <Typography>Website: {admin.academy?.website}</Typography>
             {toggle && <EditAdmin />}
             {toggle ?
-                <button onClick={handelToggle}>close</button> :
-                <button onClick={handelToggle}>Edit</button>
+                <Button variant='contained' size='small'
+                    color='secondary' onClick={handelToggle}>close</Button> :
+                <Button variant='contained' size='small'
+                    color='primary' onClick={handelToggle}
+                    style={{marginTop:'0.5rem'}}
+                >Edit</Button>
             }
-            <h3>Role: { admin.role}</h3>
-            <p>Username: {admin.username}</p>
-            <p>Email: {admin.email}</p>
-            <h3>Academy Details</h3>
-            <p>Name: {admin.academy?.name}</p>
-            <p>Website: { admin.academy?.website}</p>
-        </div>
+        </Container>
     )
 }
 export default Account

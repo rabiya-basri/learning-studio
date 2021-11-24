@@ -69,7 +69,7 @@ const LoginForm = (props) => {
                     /><br /><br/>
                 <Button variant='contained' size='small' color='primary' type='submit'>Login</Button><br/>
                 </form>
-                <Typography style={{ marginTop:'0.3rem',marginLeft:'2rem'}}>Don't have and account? <Link to='/admin/register'>Register</Link></Typography>
+                <Typography style={{ marginTop:'0.3rem',marginLeft:'2rem'}}>Don't have an account? <Link to='/admin/register'>Register</Link></Typography>
             </Paper>
         </Grid>
     )
