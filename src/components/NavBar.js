@@ -2,20 +2,22 @@ import { Toolbar,Typography } from "@material-ui/core";
 import React from "react";
 import { Link,withRouter } from 'react-router-dom'
 import Routing from "./Routing";
+import '../css/navStyle.css'
+
 const NavBar = (props) => {
     const {isLoggedIn,handelAuth}=props
 
     return (
         <>
-            <Toolbar>
+            <Toolbar className='nav-bar'>
             <Typography variant='h4' style={{flexGrow:1}} >Learning Studio</Typography>
-            <Link to='/'>Home</Link> |
+            <Link to='/' className='navBarLink'>Home</Link> 
             {isLoggedIn ? (
                 <>
-                    <Link to='/admin/account'>Account</Link> |
-                    <Link to='/students'>Students</Link> |
-                    <Link>courses</Link> |
-                    <Link onClick={(e) => {
+                    <Link to='/admin/account' className='navBarLink'>Account</Link> 
+                    <Link to='/students' className='navBarLink'>Students</Link> 
+                    <Link className='navBarLink'>courses</Link> 
+                    <Link className='navBarLink' onClick={(e) => {
                      e.preventDefault()
                      localStorage.removeItem('token')
                      alert('successfully log out')
@@ -25,13 +27,13 @@ const NavBar = (props) => {
                 </>
             ) : (
                 <>
-                    <Link to='/admin/register'>Admin</Link> | 
-                    <Link to='/studentlogin'>Student</Link> 
+                    <Link to='/admin/register' className='navBarLink'>Admin</Link>  
+                    <Link to='/studentlogin' className='navBarLink'>Student</Link> 
                 </>
             )}
             </Toolbar>
         <>
-             <Routing handelAuth={ handelAuth}/>
+        <Routing handelAuth={ handelAuth}/>
         </>
     </>
     )

@@ -4,6 +4,7 @@ import validator from 'validator'
 import { startAdminRegister } from "../../actions/adminActions";
 import { useDispatch } from "react-redux";
 import LoginForm from './LoginForm'
+import { Box, Button, Container, TextField, Typography } from "@material-ui/core";
 const RegisterForm = (props) => {
     const dispatch = useDispatch()
     
@@ -80,28 +81,36 @@ const RegisterForm = (props) => {
     }
 
     return (
-        <div>
-            <h2>Register</h2>
+        <Box sx={{ p: 2, border: '1px dashed grey' }}>
+            <Typography>Admin Registration</Typography>
 
-            <form onSubmit={handelSubmit}>
-                <input type='text' value={username} name='username' onChange={handelInputs} placeholder='Enter username' /><br />
+            <form  onSubmit={handelSubmit} style={{justifyContent:'center'}}>
+                <TextField variant="outlined" id="outlined-basic"
+                    type='text' value={username} name='username'
+                    onChange={handelInputs} label='AdminName' /><br />
                 {formErrors.username && <span style={{ color: 'red' }}>{formErrors.username}</span>}<br />
                 
-                <input type='text' value={email} name='email' onChange={handelInputs} placeholder='Enter Email' /><br />
+                <TextField variant="outlined" type='text'
+                    value={email} name='email' onChange={handelInputs} label='AdminEmail' /><br />
                 {formErrors.email && <span style={{ color: 'red' }}>{formErrors.email}</span>}<br />
                 
-                <input type='password' value={password} name='password' onChange={handelInputs} placeholder='Enter Password' /><br />
+                <TextField variant="outlined" type='password' 
+                value={password} name='password' onChange={handelInputs} label='Password' /><br />
                 {formErrors.password && <span style={{ color: 'red' }}>{formErrors.password}</span>}<br />
                 
-                <input type='text' value={academyname} name='academyname' onChange={handelInputs} placeholder='Enter academy name' /><br />
+                <TextField variant="outlined" type='text' 
+                value={academyname} name='academyname' onChange={handelInputs} 
+                label='Academy Name' /><br />
                 
-                <input type='text' value={ website} name='website' onChange={ handelInputs} placeholder='Academy website' /><br/>
-                <input type='submit' value='Register'/>
+                <TextField variant="outlined" type='text' 
+                    value={website} name='website' onChange={handelInputs}
+                    label='Academy website' /><br />
+                <Button variant='contained' size='small' color='primary' type='submit'>Register</Button> 
             </form>
 
-            <Link to='/admin/login'>Login</Link>
+            <Typography>Already have an account? <Link to='/admin/login'>Login</Link></Typography>
             <Route path='/admin/login' component={LoginForm} exact={ true}/>
-        </div>
+        </Box>
     )
 }
 
