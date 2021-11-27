@@ -16,7 +16,7 @@ const NavBar = (props) => {
                 <>
                     <Link to='/admin/account' className='navBarLink'>Account</Link> 
                     <Link to='/students' className='navBarLink'>Students</Link> 
-                    <Link className='navBarLink'>courses</Link> 
+                    <Link className='navBarLink' to='/courses'>courses</Link> 
                     <Link className='navBarLink' onClick={(e) => {
                      e.preventDefault()
                      localStorage.removeItem('token')
