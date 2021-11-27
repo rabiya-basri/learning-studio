@@ -2,8 +2,12 @@ import React,{useState} from 'react'
 import validator from 'validator'
 import { startRegisterStudent } from '../../actions/studentActions'
 import { useDispatch } from 'react-redux'
-
+import {Grid,Paper, TextField, Typography,Button} from '@material-ui/core'
 const Register = (props) => {
+    const { toggel,handelToggel } = props
+    
+    const paperStyle = { padding: 20, height: '70%', width: 400, margin: '20px auto' }
+
     const dispatch = useDispatch()
     
     const [name, setName] = useState('')
@@ -57,25 +61,40 @@ const Register = (props) => {
                 password
             }
             console.log(formData)
-            dispatch(startRegisterStudent(formData))
+            dispatch(startRegisterStudent(formData,handelToggel))
             resetForm()
         } else {
             setFormErrors(errors)
         }
     }
     return (
-        <div>
-            <h2>Register Student</h2>
+        <Grid>
+            <Paper style={paperStyle}>
+            <Typography variant='h6' style={{marginBottom:'0.4rem',fontWeight:600,marginLeft:'6rem'}}>Register Student</Typography>
             <form onSubmit={ handelSubmit}>
-                <input type='text' value={name} onChange={handelInput} name='name' placeholder='Enter Student Name' /><br />
-                {formErrors.name && <span>{ formErrors.name}</span>}<br/>
-                <input type='text' value={email} onChange={handelInput} name='email' placeholder='Enter Student Email' /><br />
-                {formErrors.email && <span>{ formErrors.email}</span>}<br/>
-                <input type='password' value={ password} onChange={ handelInput} name='password' placeholder='Enter Student Password'/><br/>
-                {formErrors.password && <span>{ formErrors.password}</span>}<br/>
-                <input type='submit' value='Register' />
+                <TextField type='text' value={name} onChange={handelInput}
+                name='name' label='Student Name'
+                style={{width:'90%'}}    
+                /><br />
+                {formErrors.name && <span style={{ color: 'red' }}>{formErrors.name}</span>}<br />
+                    
+                <TextField type='text' value={email} onChange={handelInput}
+                name='email' label='Student Email'style={{width:'90%'}} /><br />
+                {formErrors.email && <span style={{ color: 'red' }}>{formErrors.email}</span>}<br />
+                    
+                <TextField type='password' value={password} onChange={handelInput}
+                name='password' label='Student Password' style={{width:'90%'}} /><br />
+                {formErrors.password && <span style={{ color: 'red' }}>{formErrors.password}</span>}<br />
+                    
+                <Button variant='contained'
+                    size='small'
+                    color='primary'
+                    type='submit'
+                >Register</Button>
+                
             </form>
-        </div>
+            </Paper>
+        </Grid>
     )
 }
 export default Register

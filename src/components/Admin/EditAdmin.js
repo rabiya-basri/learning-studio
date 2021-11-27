@@ -2,14 +2,17 @@ import React,{useState} from 'react'
 import validator from "validator";
 import { useDispatch } from 'react-redux';
 import { startEditAdmin } from '../../actions/adminActions';
-
+import { Grid, TextField, Typography,Button } from '@material-ui/core';
+import { teal } from '@material-ui/core/colors';
 const EditAdmin = (props) => {
+    const { email:adminEmail, adminName, academyName:adminAcademy, website:adminWebsite,handelToggle,toggle } = props
+    
     const dispatch = useDispatch()
     
-    const [email, setEmai] = useState('')
-    const [username, setUsername] = useState('')
-    const [academyName, setAcademyName] = useState('')
-    const [website, setWebsite] = useState('')
+    const [email, setEmai] = useState(adminEmail?adminEmail:'')
+    const [username, setUsername] = useState(adminName?adminName:'')
+    const [academyName, setAcademyName] = useState(adminAcademy?adminAcademy:'')
+    const [website, setWebsite] = useState(adminWebsite?adminWebsite:'')
     const [formErrors, setFormErrors] = useState({})
     const errors = {}
 
@@ -60,17 +63,52 @@ const EditAdmin = (props) => {
     }
 
     return (
-        <div>
-            <h1>Edit Admin</h1>
+        <Grid>
+            <Typography variant='h6' style={{marginBottom:'0.4rem',fontWeight:600,marginLeft:'6rem'}}>Edit Admin</Typography>
             <form onSubmit={handelSubmit}>
-                <input type='text' value={email} onChange={handelInput} name='email' placeholder='Enter Email' /><br />
-                {formErrors.email && <span>{ formErrors.email}</span>}<br/>
-                <input type='text' value={ username} onChange={ handelInput} name='username' placeholder='Enter username' /><br/>
-                <input type='text' value={ academyName} onChange={ handelInput} name='academyname' placeholder='Enter academy name' /><br/>
-                <input type='text' value={ website} onChange={ handelInput} name='website' placeholder='Enter website' /><br/>
-                <input type='submit' value='save'/>
+                <TextField type='text'
+                    value={email}
+                    onChange={handelInput}
+                    name='email'
+                    label='AdminEmail'
+                    variant='outlined'
+                /><br />
+                {formErrors.email && <span>{formErrors.email}</span>}<br />
+                
+                <TextField type='text'
+                    value={username}
+                    onChange={handelInput}
+                    label='AdminName'
+                    name='username'
+                    variant='outlined'
+                /><br /><br/>
+
+                <TextField type='text'
+                    value={academyName}
+                    onChange={handelInput}
+                    label='AcademyName'
+                    name='academyname'
+                    variant='outlined'
+                /><br /><br/>
+                
+                <TextField type='text'
+                    value={website}
+                    onChange={handelInput}
+                    label='website'
+                    name='website'
+                    variant='outlined'
+                /><br /><br/>
+
+                <Button variant='contained'
+                    size='small'
+                    color='primary'
+                    type='submit'
+                    style={{marginRight:'0.3rem'}}
+                >Save</Button>
+                {toggle && <Button variant='contained' size='small'
+                    color='secondary' onClick={handelToggle}>close</Button>}
             </form>
-        </div>
+        </Grid>
     )
 }
 export default EditAdmin

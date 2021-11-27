@@ -2,6 +2,9 @@ import React from "react";
 import { useSelector,useDispatch } from "react-redux";
 import { startGetStudent,startEditStudent, startRemoveStudent } from "../../actions/studentActions";
 import { TableContainer,Table, TableHead, TableRow, TableCell, TableBody, Paper } from '@material-ui/core'
+import DeleteIcon from '@material-ui/icons/Delete';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import EditIcon from '@material-ui/icons/Edit';
 
 const StudentTable = (props) => {
     const dispatch = useDispatch()
@@ -26,9 +29,10 @@ const StudentTable = (props) => {
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
                 <TableRow>
-                    <TableCell style={{fontWeight:600}}>Id</TableCell>
+                    <TableCell style={{fontWeight:600}}>Sl.no</TableCell>
                     <TableCell style={{fontWeight:600}}>Name</TableCell>
-                    <TableCell style={{fontWeight:600}}>Email</TableCell>
+                    <TableCell style={{ fontWeight: 600 }}>Email</TableCell>
+                    <TableCell style={{ fontWeight: 600 }}>Id</TableCell>   
                     <TableCell style={{fontWeight:600}}>view Details</TableCell>
                     <TableCell style={{fontWeight:600}}>Edit</TableCell>
                     <TableCell style={{fontWeight:600}}>Delete</TableCell>
@@ -43,15 +47,16 @@ const StudentTable = (props) => {
                             <TableCell>{ i+1}</TableCell>
                             <TableCell>{student.name}</TableCell>
                             <TableCell>{student.email}</TableCell>
-                            <TableCell><button onClick={() => {
+                            <TableCell>{student._id}</TableCell>
+                            <TableCell><VisibilityIcon color="action" onClick={() => {
                                 handelStudentView(student._id)
-                            }}>View</button></TableCell>
-                            <TableCell><button onClick={() => {
+                            }}></VisibilityIcon></TableCell>
+                            <TableCell><EditIcon color="action" onClick={() => {
                                 handelEdit(student._id)
-                            }}>Edit</button></TableCell>
-                            <TableCell><button onClick={() => {
+                            }}></EditIcon></TableCell>
+                            <TableCell><DeleteIcon color="action" onClick={() => {
                                 handelDelete(student._id)
-                            }}>Delete</button></TableCell>
+                            }}></DeleteIcon></TableCell>
                         </TableRow>
                     )
                 })}

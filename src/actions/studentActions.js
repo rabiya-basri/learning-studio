@@ -9,7 +9,7 @@ export const registerStudent = (formData) => {
     }
 }
 
-export const startRegisterStudent = (formData) => {
+export const startRegisterStudent = (formData,handelToggel) => {
     return (dispatch) => {
         axios.post(`https://dct-e-learning.herokuapp.com/api/admin/students`, formData, {
             headers: {
@@ -21,9 +21,10 @@ export const startRegisterStudent = (formData) => {
                 console.log(result)
                 dispatch(registerStudent(result))
                 alert('Successfully registered student')
+                handelToggel()
             })
             .catch((err) => {
-                console.log(err.message)
+                alert(err.message)
             })
     }
 }
@@ -36,18 +37,19 @@ export const loginStudent = (formData) => {
     }
 }
 
-export const startLoginStudent = (formData) => {
+export const startLoginStudent = (formData,props) => {
     return (dispatch) => {
         axios.post('https://dct-e-learning.herokuapp.com/api/students/login', formData)
             .then((response) => {
                 const token=response.data.token
-                console.log('student token',token)
+               // console.log('student token',token)
                 dispatch(loginStudent(token))
                 localStorage.setItem('token',token)
                 alert('successfully loggedin')
+                props.history.push('/course')
             })
             .catch((err) => {
-                console.log(err.message)
+                alert(err.message)
             })
     }
 }
@@ -72,7 +74,7 @@ export const startAllStudents = () => {
                 dispatch(allStudents(result))
             })
             .catch((err) => {
-            console.log(err.message)
+            alert(err.message)
         })
     }
 }
@@ -96,13 +98,13 @@ export const startGetStudent = (_id) => {
                 const result = response.data
                 swal({
                     title: `Name: ${result.name}`,
-                    text:`Email: ${result.email}`,
+                    text:`StudentId: ${result._id}\n Email: ${result.email}`,
                     button:'close'
                 })
                 console.log(result)
             })
             .catch((err) => {
-            console.log(err.message)
+            alert(err.message)
         })
     } 
     
@@ -124,10 +126,10 @@ export const startEditStudent = (_id,formData) => {
             }
         })
             .then((response) => {
-            console.log(response.data)
+            alert(response.data)
             })
             .catch((err) => {
-            console.log(err.message)
+            alert(err.message)
         })
     }
 }
@@ -152,7 +154,7 @@ export const startRemoveStudent = (_id) => {
                 dispatch(removeStudent(result._id))
             })
             .catch((err) => {
-            console.log(err.message)
+            alert(err.message)
         })
     }
 }

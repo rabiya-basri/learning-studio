@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import NavBar from './components/NavBar'
-import { Container, Toolbar, Typography } from '@material-ui/core'
+
 
 const App = (props) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)

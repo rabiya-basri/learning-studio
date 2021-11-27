@@ -6,6 +6,7 @@ import LoginForm from './Admin/LoginForm'
 import Account from './Admin/Account'
 import Login from './Student/Login'
 import StudentContainer from './Student/StudentContainer'
+import Course from './Courses/Course'
 
 const Routing = (props) => {
     const {handelAuth}=props
@@ -25,7 +26,8 @@ const Routing = (props) => {
             />
             <Route path='/students' component={StudentContainer} exact={ true}/>
             <Route path='/studentlogin' component={Login} exact={ true}/>
-            <Route path='/admin/account' component={Account} exact={ true}/>
+            <Route path='/admin/account' component={Account} exact={true} />
+            <Route path='/course' component={Course} exact={ true}/>
         </>
     )
 }

@@ -41,7 +41,7 @@ const LoginForm = (props) => {
                 password
             }
             console.log(formData)
-            dispatch(startLoginStudent(formData))
+            dispatch(startLoginStudent(formData,props))
             setEmail('')
             setPassword('')
         } else {
