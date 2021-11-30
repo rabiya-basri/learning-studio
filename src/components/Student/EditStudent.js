@@ -1,8 +1,12 @@
 import React, { useState} from "react";
+import { useDispatch } from "react-redux";
+import { startEditStudent } from "../../actions/studentActions";
 
 const EditStudent = (props) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
+    
+    const dispatch = useDispatch()
     
     const handelInput = (e) => {
         const attr = e.target.name
@@ -15,7 +19,13 @@ const EditStudent = (props) => {
 
     const handelSubmit = (e) => {
         e.preventDefault()
+        const formData = {
+            name,
+            email
+        }
+        dispatch(startEditStudent(formData))
     }
+
     return (
         <div>
             <form onSubmit={ handelSubmit}>

@@ -25,7 +25,17 @@ const Routing = (props) => {
                 }}
             />
             <Route path='/students' component={StudentContainer} exact={ true}/>
-            <Route path='/studentlogin' component={Login} exact={ true}/>
+            {/* <Route path='/studentlogin' component={Login} exact={true} /> */}
+            <Route path='/studentlogin'
+                render={(props) => {
+                    return (
+                        <Login
+                            {...props}
+                            handelAuth={handelAuth}
+                        />
+                    )
+                }}
+            />
             <Route path='/admin/account' component={Account} exact={true} />
             <Route path='/courses' component={CourseContainer} exact={ true}/>
         </>

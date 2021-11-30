@@ -1,8 +1,11 @@
 import React,{useState,useEffect} from 'react'
 import NavBar from './components/NavBar'
-
-
+import { useDispatch } from 'react-redux'
+import  jwt_decode from 'jwt-decode'
+import { startLoginStudent } from './actions/adminActions'
+import { startAdminDetails, startAdminLogin } from './actions/adminActions'
 const App = (props) => {
+    const dispatch=useDispatch()
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     
     const handelAuth = () => {
@@ -10,9 +13,17 @@ const App = (props) => {
     }
 
     useEffect(() => {
-        if (localStorage.getItem('token')) {
-            handelAuth()
+        const token=localStorage.getItem('token')
+        if (token) {
+            if (jwt_decode(token).role==='admin') {
+                dispatch(startAdminDetails)
+                handelAuth()
+            } else {
+                dispatch(startLoginStudent)
+                handelAuth()
+            }
         }
+       
     }, [])
     
     return (

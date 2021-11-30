@@ -1,7 +1,8 @@
 import React,{useState} from "react";
 import validator from "validator";
 import { useDispatch } from 'react-redux'
-import { startLoginStudent } from "../../actions/studentActions";
+import { startLoginStudent } from "../../actions/adminActions";
+
 
 const LoginForm = (props) => {
     const dispatch = useDispatch()

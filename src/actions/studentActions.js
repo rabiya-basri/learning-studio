@@ -29,30 +29,7 @@ export const startRegisterStudent = (formData,handelToggel) => {
     }
 }
 
-//student login
-export const loginStudent = (formData) => {
-    return {
-        type: 'LOGIN_STUDENT',
-        payload:formData
-    }
-}
 
-export const startLoginStudent = (formData,props) => {
-    return (dispatch) => {
-        axios.post('https://dct-e-learning.herokuapp.com/api/students/login', formData)
-            .then((response) => {
-                const token=response.data.token
-               // console.log('student token',token)
-                dispatch(loginStudent(token))
-                localStorage.setItem('token',token)
-                alert('successfully loggedin')
-                props.history.push('/course')
-            })
-            .catch((err) => {
-                alert(err.message)
-            })
-    }
-}
 
 //get all student info
 export const allStudents = (result) => {
@@ -126,10 +103,12 @@ export const startEditStudent = (_id,formData) => {
             }
         })
             .then((response) => {
-            alert(response.data)
+                const result=response.data
+                console.log(result)
+                dispatch(editStudent(result))
             })
             .catch((err) => {
-            alert(err.message)
+            console.log(err.message)
         })
     }
 }

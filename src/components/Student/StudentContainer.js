@@ -30,7 +30,7 @@ const StudentContainer = (props) => {
               )
             }
             <Typography variant='h5' style={{fontWeight:600,margin:'1rem '}}>Total Students - {students.length}</Typography>
-            <StudentTable />
+            <StudentTable/>
         </Container>
     )
 }
