@@ -23,12 +23,16 @@ const StudentTable = (props) => {
         dispatch(startGetStudent(_id))
     }
 
-    const handelEdit = (_id) => {
-        dispatch(startEditStudent(_id))
+    const handelEdit = (student, _id) => {
+        const result = student.find((ele) => {
+            return ele._id===_id
+        })
+        dispatch(startEditStudent(result))
 
     }
 
-    const handelDelete = (_id) => {
+    const handelDelete = ( _id) => {
+        
         dispatch(startRemoveStudent(_id))
     }
     return (
@@ -63,7 +67,7 @@ const StudentTable = (props) => {
                             </TableCell>
                             <TableCell>
                                 <EditIcon color="action" onClick={() => {
-                                    handelEdit(student._id)
+                                    handelEdit(student,student._id)
                                     handelToggel()
                                 }}></EditIcon>
                             </TableCell>
