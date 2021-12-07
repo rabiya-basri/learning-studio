@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import  jwt_decode from 'jwt-decode'
 import { startLoginStudent } from './actions/adminActions'
 import { startAdminDetails, startAdminLogin } from './actions/adminActions'
+import { Divider } from '@material-ui/core'
 const App = (props) => {
     const dispatch=useDispatch()
     const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -28,7 +29,7 @@ const App = (props) => {
     
     return (
         <>
-        <NavBar handelAuth={handelAuth} isLoggedIn={ isLoggedIn}/>
+            <NavBar handelAuth={handelAuth} isLoggedIn={isLoggedIn} />
         </>
     )
 }

@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { useDispatch } from 'react-redux'
-import { startAddCourse } from '../../actions/courseAction'
-
+import { startAddCourse } from '../../actions/adminActions'
+import { FormControlLabel,FormGroup,Grid,Checkbox } from '@material-ui/core'
 const AddCourseForm = (props) => {
     const dispatch = useDispatch()
     
@@ -89,20 +89,45 @@ const AddCourseForm = (props) => {
     }
 
     return (
-        <div>
+        <Grid>
             <form onSubmit={ formSubmit}>
-                <input type='text' value={name} name='name' onChange={handelInput} placeholder='CourseName' /><br />
+                    <input type='text'
+                        value={name}
+                        name='name'
+                        onChange={handelInput}
+                        placeholder='CourseName'
+                    /><br />
                 {formErrors.name && <span>{formErrors.name}</span>}<br />
                 
                 <textarea value={ description} name='description' onChange={ handelInput} placeholder='course Description' /><br />
                 {formErrors.description && <span>{formErrors.description}</span>}<br />
                 
-                <input type='number' value={duration} name='duration' onChange={handelInput} placeholder='course Duration' /><br />
+                    <input type='number'
+                        value={duration}
+                        name='duration'
+                        onChange={handelInput}
+                        placeholder='course Duration'
+                    /><br />
                 {formErrors.duration && <span>{formErrors.duration}</span>}<br />
                 
-                <input type='date' value={releaseDate} name='date' onChange={handelInput} /><br />
+                    <input type='date'
+                        value={releaseDate}
+                        name='date'
+                        onChange={handelInput}
+                    /><br />
                 
-                <label>isDelete</label><input type='checkbox' value={isDelete} onChange={ handelCheckBox} name='isDeleted'/><br />
+                    <FormGroup>
+                        <FormControlLabel
+                            control={<Checkbox
+                                type='checkbox'
+                                value={isDelete}
+                                onChange={handelCheckBox}
+                                name='isDeleted'
+                                color='primary'
+                            />}
+                            label='Deleted'
+                        />
+                    </FormGroup>
                
                 <select value={category} name='category' onChange={handelInput}>
                     <option>Select category</option>
@@ -113,7 +138,12 @@ const AddCourseForm = (props) => {
                     })}
                 </select><br />
                 
-                <input type='number' name='validity' value={validity} onChange={ handelInput} placeholder='course validity' /><br />
+                    <input type='number'
+                        name='validity'
+                        value={validity}
+                        onChange={handelInput}
+                        placeholder='course validity'
+                    /><br />
                 
                 <select value={level} name='level' onChange={handelInput}>
                     <option>select level</option>
@@ -124,12 +154,17 @@ const AddCourseForm = (props) => {
                     })}
                 </select><br />
                 
-                <input type='text' value={author} name='author' onChange={ handelInput} placeholder='author' /><br />
+                    <input type='text'
+                        value={author}
+                        name='author'
+                        onChange={handelInput}
+                        placeholder='author'
+                    /><br />
                 {formErrors.author && <span>{formErrors.author}</span>}<br />
                 
                 <input type='submit' value='Add Course' />
             </form>
-        </div>
+        </Grid>
     )
 }
 export default AddCourseForm

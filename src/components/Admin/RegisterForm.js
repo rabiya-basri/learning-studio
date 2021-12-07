@@ -85,7 +85,7 @@ const RegisterForm = (props) => {
 
     return (
         <Grid>
-            <Paper elevation={10} style={paperStyle}>
+            <Paper style={paperStyle}>
             <Typography variant='h6' style={{marginBottom:'0.4rem',fontWeight:600,marginLeft:'6rem'}}>Admin Registration</Typography>
 
                 <form  onSubmit={handelSubmit} style={{marginLeft:'2rem'}}>

@@ -1,4 +1,4 @@
-import { Toolbar,Typography } from "@material-ui/core";
+import { Divider, Toolbar,Typography } from "@material-ui/core";
 import React from "react";
 import { Link,withRouter } from 'react-router-dom'
 import Routing from "./Routing";
@@ -14,7 +14,7 @@ const NavBar = (props) => {
     return (
         <>
             <Toolbar className='nav-bar'>
-            <Typography variant='h4' style={{flexGrow:1}} >ILM</Typography>
+            <Typography variant='h4' style={{flexGrow:1}} >lLM</Typography>
             <Link to='/' className='navBarLink'>Home</Link> 
             {isLoggedIn ? (
                     <>

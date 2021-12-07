@@ -23,18 +23,14 @@ const StudentTable = (props) => {
         dispatch(startGetStudent(_id))
     }
 
-    const handelEdit = (student, _id) => {
-        const result = student.find((ele) => {
-            return ele._id===_id
-        })
-        dispatch(startEditStudent(result))
-
+    const handelEdit = (_id) => {
+        dispatch(startEditStudent(_id))
     }
 
     const handelDelete = ( _id) => {
-        
         dispatch(startRemoveStudent(_id))
     }
+    
     return (
         <>
         <TableContainer component={Paper}>
@@ -44,7 +40,6 @@ const StudentTable = (props) => {
                     <TableCell style={{fontWeight:600}}>Sl.no</TableCell>
                     <TableCell style={{fontWeight:600}}>Name</TableCell>
                     <TableCell style={{ fontWeight: 600 }}>Email</TableCell>
-                    <TableCell style={{ fontWeight: 600 }}>Id</TableCell>   
                     <TableCell style={{fontWeight:600}}>view Details</TableCell>
                     <TableCell style={{fontWeight:600}}>Edit</TableCell>
                     <TableCell style={{fontWeight:600}}>Delete</TableCell>
@@ -59,7 +54,6 @@ const StudentTable = (props) => {
                             <TableCell>{i + 1}</TableCell>
                             <TableCell>{student.name}</TableCell>
                             <TableCell>{student.email}</TableCell> 
-                            <TableCell>{student._id}</TableCell>
                             <TableCell>
                             <VisibilityIcon color="action" onClick={() => {
                                     handelStudentView(student._id)
@@ -67,7 +61,7 @@ const StudentTable = (props) => {
                             </TableCell>
                             <TableCell>
                                 <EditIcon color="action" onClick={() => {
-                                    handelEdit(student,student._id)
+                                    handelEdit(student._id)
                                     handelToggel()
                                 }}></EditIcon>
                             </TableCell>

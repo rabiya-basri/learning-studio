@@ -51,7 +51,8 @@ export const startAllStudents = () => {
                 dispatch(allStudents(result))
             })
             .catch((err) => {
-            alert(err.message)
+                console.log(err.message)
+            //alert(err.message)
         })
     }
 }
